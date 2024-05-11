@@ -53,43 +53,84 @@ var GraphHopper = Base.extend({
 
   fetch: function() {
 
-    var via = '';
-
-    if (this.direction) {
-      via += '&point=' + [this.direction.lat, this.direction.lng].join('%2C');
-    }
-
-    var reqUrl = [
-      this.BASE_URL,
-      'route?type=jsonp',
-      '&key=',
-      this.apiKey,
-      '&locale=',
-      this.lang,
-      '&vehicle=',
-      this.routeType,
-      '&weighting=',
-      this.modifier,
-      '&point=',
-      [
-        this.start.lat,
-        this.start.lng,
-      ].join('%2C'),
-      via,
-      '&point=',
-      [
-        this.dest.lat,
-        this.dest.lng
-      ].join('%2C')
-    ];
-
     ffwdme.trigger(this.eventPrefix() + ':start', { routing: this });
 
-    ffwdme.utils.Proxy.get({
-      url: reqUrl.join(''),
-      success: this.parse,
-      error: this.error
-    });
+	if (true) {
+		var self = this;
+		var reqUrl = this.BASE_URL+"route?key="+this.apiKey;
+		var query = {
+			"locale" : this.lang,
+			"profile" : this.routeType,
+			"weighting" : this.modifier,
+			"points" : [
+				[this.start.lng,this.start.lat],
+				[this.dest.lng,this.dest.lat]
+			]
+		};
+
+		if (this.direction) {
+			query.points.splice(1, 0, [this.direction.lng,this.direction.lat]);
+		}
+		
+		var req = new XMLHttpRequest();   // new HttpRequest instance 
+		req.open("POST", reqUrl);
+		req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.overrideMimeType("application/json");
+		req.onreadystatechange = function () {
+			if (req.readyState === 4) {
+				if (req.status === 200) {
+					console.log("Success:"+req.responseText);
+					self.parse(JSON.parse(req.responseText));
+				} else {
+					console.log("Error", req.statusText);
+					self.error(req.statusText);
+				}
+			}
+		};
+		req.timeout = 4000;
+		req.ontimeout = function () { 
+			self.error("Timed out"); 
+		}
+		req.send(JSON.stringify(query));
+		
+	} else {
+		
+		var via = '';
+
+		if (this.direction) {
+		  via += '&point=' + [this.direction.lat, this.direction.lng].join('%2C');
+		}
+
+		var reqUrl = [
+		  this.BASE_URL,
+		  'route?type=jsonp',
+		  '&key=',
+		  this.apiKey,
+		  '&locale=',
+		  this.lang,
+		  '&vehicle=',
+		  this.routeType,
+		  '&weighting=',
+		  this.modifier,
+		  '&point=',
+		  [
+			this.start.lat,
+			this.start.lng,
+		  ].join('%2C'),
+		  via,
+		  '&point=',
+		  [
+			this.dest.lat,
+			this.dest.lng
+		  ].join('%2C')
+		];
+
+		ffwdme.utils.Proxy.get({
+		  url: reqUrl.join(''),
+		  success: this.parse,
+		  error: this.error
+		});
+	}
 
     return ffwdme;
   },
