@@ -162,6 +162,9 @@ var Navigation = Class.extend({
   },
 
   getPositionOnRoute: function(position) {
+	// If no geolocation, do not bother
+	if (position == null)
+		return;
 
     var MAX_DISTANCE = 30;//Math.max(35, Math.min(pos.coords.accuracy.toFixed(1), 50));// OR 35?!
 

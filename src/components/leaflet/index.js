@@ -161,8 +161,10 @@ var Leaflet = Base.extend({
 
   navigationOffRoute: function(e) {
     var p = e.navInfo.positionRaw;
+	if (p == null || e.navInfo.position == null)
+		return;
     this.drawMarkerOnMap(p.lat, p.lng, true);
-    this.drawHelpLine(e.navInfo.positionRaw, e.navInfo.position);
+    this.drawHelpLine(p, e.navInfo.position);
   },
 
   drawPolylineOnMap: function(route, center){
@@ -211,6 +213,9 @@ var Leaflet = Base.extend({
   },
 
   drawHelpLine: function(rawPos, desiredPos) {
+	if (rawPos == null || desiredPos == null)
+		return;
+	
     var latlngs = [
       new L.LatLng(rawPos.lat,      rawPos.lng),
       new L.LatLng(desiredPos.lat,  desiredPos.lng)
