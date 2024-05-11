@@ -20,7 +20,10 @@
 	}
 .leaflet-container {
 	overflow: hidden;
-	-ms-touch-action: none;
+	-webkit-touch-action: none;		
+	   -moz-touch-action: none;
+	    -ms-touch-action: none;
+    	    touch-action: none;
 	}
 .leaflet-tile,
 .leaflet-marker-icon,
@@ -29,6 +32,8 @@
 	   -moz-user-select: none;
 	        user-select: none;
 	-webkit-user-drag: none;
+	   -moz-user-drag: none;
+	        user-drag: none;
 	}
 .leaflet-marker-icon,
 .leaflet-marker-shadow {
@@ -55,7 +60,9 @@
 	}
 /* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
 .leaflet-overlay-pane svg {
-	-moz-user-select: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
 	}
 
 .leaflet-tile-pane    { z-index: 2; }
@@ -165,6 +172,8 @@
 .leaflet-container {
 	cursor: -webkit-grab;
 	cursor:    -moz-grab;
+	cursor:         grab;
+	
 	}
 .leaflet-popup-pane,
 .leaflet-control {
