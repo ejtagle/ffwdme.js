@@ -1,5 +1,5 @@
 $grid_size: 12;
-$single_col_size: 100.0 / $grid_size;
+$single_col_size: calc(100.0 / $grid_size);
 
 @for $i from 1 through $grid_size {
   $percent: $single_col_size * $i;
@@ -7,22 +7,22 @@ $single_col_size: 100.0 / $grid_size;
 
   .ffwdme-grid-x#{$i}{
     position: absolute;
-    left: ceil($no_offset * 100) / 100 * 1%;
+    left: calc(ceil($no_offset * 100) / 100 * 1%);
   }
 
   .ffwdme-grid-y#{$i}{
     position: absolute;
-    top: ceil($no_offset * 100) / 100 * 1%;
+    top: calc(ceil($no_offset * 100) / 100 * 1%);
   }
 
   .ffwdme-grid-w#{$i}{
     position: absolute;
-    width: ceil($percent * 100) / 100 * 1%;
+    width: calc(ceil($percent * 100) / 100 * 1%);
   }
 
   .ffwdme-grid-h#{$i}{
     position: absolute;
-    height: ceil($percent * 100) / 100 * 1%;
+    height: calc(ceil($percent * 100) / 100 * 1%);
   }
 
 }
