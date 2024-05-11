@@ -17,7 +17,7 @@ function init() {
         }
     });
 
-    var tileURL = "https://api.tiles.mapbox.com/v4/" + CREDENTIALS.mapboxId + "/{z}/{x}/{y}.png?access_token=" + CREDENTIALS.mapboxToken;
+	var tileURL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
     var map = new ffwdme.components.Leaflet({el: $('#map'), tileURL: tileURL, center: {lat: 49.90179, lng: 8.85723}});
 
     var audioData = {
