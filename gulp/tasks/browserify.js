@@ -25,7 +25,7 @@ var banner = ['/**',
   ' */',
   ''].join('\n');
 
-gulp.task('browserify', function() {
+gulp.task('browserify', async function() {
   var bundles = [];
 
   var baseConfig = {
@@ -63,7 +63,12 @@ gulp.task('browserify', function() {
         .pipe(gulp.dest('./build/'))
         // minified version
         .pipe(rename({ suffix: '.min' }))
-        .pipe(uglify({ preserveComments: 'some' }))
+        .pipe(uglify({
+			mangle: true,
+			output: {
+				comments: /^!/
+			}
+		}))
         .pipe(gulp.dest('./build/'))
         // done
         .on('end', bundleLogger.end);

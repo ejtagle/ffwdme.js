@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var awspublish = require('gulp-awspublish');
 var handleErrors = require('../util/handle_errors');
 
-gulp.task('deploy', ['build'], function() {
+gulp.task('deploy', gulp.series('build'), function() {
   var secrets = require('../../secrets.json');
   var publisher = awspublish.create({
     key:    secrets.aws.key,

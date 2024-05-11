@@ -6,7 +6,7 @@
 
 var gulp = require('gulp');
 
-gulp.task('watch', ['setWatch', 'browserSync'], function() {
+gulp.task('watch', gulp.series('setWatch', 'browserSync'), function() {
   gulp.watch('static/**', ['static']);
   gulp.watch('./src/**/*.scss', ['sass']);
   gulp.watch('./src/**/*.{png,svg,json,m4a,mp3,ogg,wav}', ['assets']);

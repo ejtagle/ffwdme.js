@@ -1,10 +1,10 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var sourcemaps = require('gulp-sourcemaps');
 var bundleLogger = require('../util/bundle_logger');
 var handleErrors = require('../util/handle_errors');
 
-gulp.task('sass', function () {
+gulp.task('sass',async function () {
   bundleLogger.start();
 
   gulp.src('./src/**/*.scss')
