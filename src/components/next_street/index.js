@@ -2,7 +2,11 @@ var BaseWide = require('../base_wide');
 
 var NextStreet = BaseWide.extend({
 
-  classes: 'ffwdme-components-container ffwdme-components-text-only ffwdme-grid-w9 ffwdme-grid-h1',
+    classname: "NextStreet",
+
+    announceDist: 150,
+
+    classes: 'ffwdme-components-container ffwdme-components-text-only ffwdme-grid-w9 ffwdme-grid-h1 ffwdme-info',
 
   showNextStreet: function(e) {
     $(this.el).find('.ffwdme-components-text')
@@ -18,8 +22,10 @@ var NextStreet = BaseWide.extend({
   navigationOnRoute: function(e) {
     if (e.navInfo.finalDirection === true) {
       this.showFinalStreet(e);
-    } else if (e.navInfo.nextDirection && e.navInfo.nextDirection.street) {
+    } else if (e.navInfo.nextDirection && e.navInfo.nextDirection.street && e.navInfo.distanceToNextDirection < this.announceDist) {
       this.showNextStreet(e);
+    } else {
+      this.showFinalStreet(e); // this shows current street
     }
   }
 });

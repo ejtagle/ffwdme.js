@@ -9,6 +9,12 @@
   position: absolute;
 
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all .2s;
+  text-shadow: none;
 
   @include widget-font-style;
   @include widget-border-style;

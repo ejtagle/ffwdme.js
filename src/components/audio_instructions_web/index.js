@@ -16,6 +16,8 @@ var AudioInstructionsWeb = Base.extend({
     this.render();
   },
 
+  classname: "AudioInstructionsWeb",
+
   lastAction: '',
 
   player: null,
@@ -26,7 +28,7 @@ var AudioInstructionsWeb = Base.extend({
 
   iconSoundOn: 'audio_instructions_web/sound-on.svg',
 
-  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1',
+  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-clickable',
 
   logoEl: null,
 
@@ -47,7 +49,7 @@ var AudioInstructionsWeb = Base.extend({
     if (!distance || !nextDirection) return;
 
     var action = this.audioAction(distance, nextDirection.turnType);
-    if (action.length && action != this.lastAction){
+    if (action.length && action !== this.lastAction){
       this.player.play(action, nextDirection);
       this.lastAction = action;
     }
@@ -63,6 +65,7 @@ var AudioInstructionsWeb = Base.extend({
   forwardMetersBySpeed: function(speed) {
     //something wrong
     if (speed === 0) return 40;
+    if (isNaN(speed)) return 40;
 
     var fm = 20;
 
@@ -92,9 +95,9 @@ var AudioInstructionsWeb = Base.extend({
       return '';
     }
 
-    if (/^EXIT/.test(turnType)){
-      return turnType;
-    }
+    // if (/^EXIT/.test(turnType)){
+    //   return turnType;
+    // }
 
     if (distance > (1200-acceptedBackwardsMeters) &&
         distance < (10000+this.forwardMeters)){

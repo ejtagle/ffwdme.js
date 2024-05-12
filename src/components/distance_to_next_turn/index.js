@@ -3,7 +3,9 @@ var DistanceToDestination = require('../distance_to_destination');
 
 var DistanceToNextTurn = BaseWide.extend({
 
-  classes: 'ffwdme-components-container ffwdme-grid-w9 ffwdme-grid-h1 ffwdme-components-text-only ffwdme-components-big-typo',
+  classname: "DistanceToNextTurn",
+
+  classes: 'ffwdme-components-container ffwdme-grid-w9 ffwdme-grid-h1 ffwdme-components-text-only ffwdme-info',
 
   format: DistanceToDestination.prototype.format,
 

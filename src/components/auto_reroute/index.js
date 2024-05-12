@@ -18,6 +18,8 @@ var AutoReroute = Base.extend({
     this.render();
   },
 
+  classname: "AutoReroute",
+
   classes: 'ffwdme-components-container ffwdme-components-statusbar',
 
   offRouteCounter: 0,
@@ -30,15 +32,15 @@ var AutoReroute = Base.extend({
 
   status: {
     off: {
-      message: 'You\'re off the route',
+      message: 'Off planned route',
       css: 'red'
     },
     start: {
-      message: 'Recalculating route...',
+      message: 'Recalculating route ...',
       css: 'yellow'
     },
     success: {
-      message: 'Recalculation finished',
+      message: 'Rerouted',
       css: 'green'
     }
   },
@@ -54,11 +56,17 @@ var AutoReroute = Base.extend({
   },
 
   hide: function(delay) {
-    var el = $(this.el);
+      if (typeof delay === 'undefined') delay = 3000;
+
+      var me = this;
     this.hideTimeout = setTimeout(function(){
-      el.removeClass('green').removeClass('yellow').removeClass('red').hide();
-    }, 3000);
+        me.removeClasses();
+    }, delay);
   },
+
+  removeClasses: function() {
+      $(this.el).removeClass('green').removeClass('yellow').removeClass('red');//.hide();
+    },
 
   onRoute: function() {
     $(this.el).hide();
@@ -67,6 +75,7 @@ var AutoReroute = Base.extend({
   offRoute: function() {
     this.offRouteCounter++;
     var state = this.status.off;
+    this.removeClasses();
     $(this.el).addClass(state.css).text(state.message).show();
     if (this.offRouteCounter <= 15 || this.isRerouting) return;
 
@@ -83,6 +92,7 @@ var AutoReroute = Base.extend({
   start: function() {
     this.isRerouting = true;
     var state = this.status.start;
+    this.removeClasses();
     $(this.el).addClass(state.css).text(state.message).show();
   },
 
@@ -90,7 +100,9 @@ var AutoReroute = Base.extend({
     this.isRerouting = false;
     this.offRouteCounter = 0;
     var state = this.status.success;
-    $(this.el).addClass(state.css).text(state.message).show().hide();
+    this.removeClasses();
+    $(this.el).addClass(state.css).text(state.message).show();//.hide();
+    this.hide(3000);
   },
 
   error: function() {

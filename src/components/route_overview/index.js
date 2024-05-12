@@ -7,6 +7,8 @@ var RouteOverview = Base.extend({
     this.render();
   },
 
+  classname: "RouteOverview",
+
   attrAccessible: ['map', 'grid'],
 
   iconEl: null,
@@ -17,7 +19,7 @@ var RouteOverview = Base.extend({
 
   iconRouteOverview: 'route_overview/map.svg',
 
-  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-components-route-overview',
+  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-components-route-overview ffwdme-clickable',
 
   toggleOverview: function(e){
     if (!this.map || !this.map.canControlMap(this)) return;
@@ -25,6 +27,10 @@ var RouteOverview = Base.extend({
     this.icon = (this.map.toggleRouteOverview()) ? this.iconPosition : this.iconRouteOverview;
     this.setIcon();
     this.setOpacity();
+
+    setTimeout(function() {
+        ffwdme.geolocation.last && ffwdme.trigger('geoposition:update', ffwdme.geolocation.last);
+    }, 200);
   },
 
 

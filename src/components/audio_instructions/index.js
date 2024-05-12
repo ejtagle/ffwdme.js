@@ -3,6 +3,8 @@ var SpritesPlayer = require('./sprites_player');
 
 var AudioInstructions = Base.extend({
 
+  classname: "AudioInstructions",
+
   constructor: function(options) {
     this.base(options);
     this.bindAll(this, 'navigationOnRoute', 'onGeopositionUpdate', 'toggleSound');
@@ -30,7 +32,7 @@ var AudioInstructions = Base.extend({
 
   iconSoundOn: 'audio_instructions/sound-on.svg',
 
-  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1',
+  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-clickable',
 
   logoEl: null,
 

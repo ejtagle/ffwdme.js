@@ -1,0 +1,23 @@
+.ffwdme-components-nav-start-image {
+  height: 80%;
+  //margin-top: 0.08em;
+}
+
+.ffwdme-nav-idle {
+  display:none;
+}
+
+.ffwdme-components-nav-start {
+  display: flex;
+}
+
+.ffwdme-components-nav-start.ffwdme-nav-idle {
+  background-color: #73b451 !important;
+  display: flex;
+}
+
+
+.ffwdme-nav-no-dest.ffwdme-components-nav-start {
+  display:none;
+}
+

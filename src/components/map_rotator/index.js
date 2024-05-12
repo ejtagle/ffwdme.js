@@ -12,6 +12,8 @@ var MapRotator = Base.extend({
     this.setupRotation();
   },
 
+  classname: "MapRotator",
+
   attrAccessible: ['map'],
 
   last_heading: 0,

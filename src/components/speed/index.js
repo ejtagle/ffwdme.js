@@ -6,11 +6,16 @@ var Speed = BaseIcon.extend({
 
   defaultUnit: 'km/h',
 
+  classname: "Speed",
+
+  classes:'ffwdme-info',
+
   format: function(metersPerSecond) {
     return Math.round(metersPerSecond*3.6);
   },
 
   navigationOnRoute: function(e) {
+
     var speed = e.navInfo.raw.geoposition.coords.speed;
     if (speed) this.label(this.format(speed));
   }

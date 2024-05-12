@@ -9,6 +9,8 @@ var AutoZoom = Base.extend({
     ffwdme.on('geoposition:update', this.onGeopositionUpdate);
   },
 
+  classname: "AutoZoom",
+
   attrAccessible: ['map'],
 
   cachedZoomLevel: null,

@@ -27,6 +27,8 @@ var Base = ffwdme.Class.extend({
     }
   },
 
+  classname: "Base",
+
   classes: null,
 
   grid: null,
@@ -75,19 +77,19 @@ var Base = ffwdme.Class.extend({
       .addClass('ffwdme-components-test-size ffwdme-components-container ffwdme-grid-h1')
       .appendTo($('.ffwdme-components-wrapper'));
 
-    var lastHeight = null;
-    var updateHeights = function(){
-      var el = ffwdme.components.Base.testElement;
-      var testHeight = parseInt(el.height(), 10);
-      if (lastHeight != testHeight) {
-        $('.ffwdme-components-container').not(el).css({ fontSize: testHeight+ "px", lineHeight: testHeight + "px" })
-      }
-      lastHeight = testHeight;
-    };
+    // var lastHeight = null;
+    // var updateHeights = function(){
+    //   var el = ffwdme.components.Base.testElement;
+    //   var testHeight = parseInt(el.height(), 10);
+    //   if (lastHeight != testHeight) {
+    //     $('.ffwdme-components-container').not(el).css({ fontSize: testHeight+ "px", lineHeight: testHeight + "px" })
+    //   }
+    //   lastHeight = testHeight;
+    // };
 
-    $(window).bind('resize', updateHeights);
+    // $(window).bind('resize', updateHeights);
     // TODO: create a trigger for this
-    window.setTimeout(updateHeights, 200);
+    // window.setTimeout(updateHeights, 200);
   },
 
   render: function(){

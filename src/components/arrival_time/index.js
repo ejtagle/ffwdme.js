@@ -2,7 +2,11 @@ var BaseIcon = require('../base_icon');
 
 var ArrivalTime = BaseIcon.extend({
 
+  classname: "ArrivalTime",
+
   icon: 'arrival_time/clock.svg',
+
+  classes: 'ffwdme-grid-w3 ffwdme-grid-h1 ffwdme-info',
 
   defaultUnit: 'Uhr',
 
