@@ -86,7 +86,7 @@ function init() {
         overview: new ffwdme.components.RouteOverview({map: map, parent: '#playground', grid: {x: 9, y: 0}}),
 
         // debugging
-        // geoloc  : new ffwdme.debug.components.Geolocation({ parent: '#playground', grid: { x: 5, y: 1 }}),
+        //geoloc  : new ffwdme.debug.components.Geolocation({ parent: '#playground', grid: { x: 5, y: 1 }}),
         navInfo: new ffwdme.debug.components.NavInfo(),
         routing: new ffwdme.debug.components.Routing()
     };
