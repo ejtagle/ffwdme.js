@@ -21,7 +21,7 @@ const startup = async () => {
 gulp.task('image_assets',async function() {
   await startup();
   
-  gulp.src('./src/**/*.{png}', { encoding: false, removeBOM: false })
+  gulp.src('./src/**/*.png', { encoding: false, removeBOM: false })
 	.pipe(imagemin([
             //png
             imageminPngquant({
