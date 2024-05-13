@@ -65,7 +65,7 @@ gulp.task('svg_assets',async function() {
 				{
 					name: 'removeAttrs',
 					params: {
-						attrs: '(width|height|style|color)',
+						attrs: '(style|color)',
 					},
 				},
 				{
@@ -75,10 +75,6 @@ gulp.task('svg_assets',async function() {
 				{
 					name: 'removeRasterImages',
 					active: false
-				},
-				{
-					name: 'removeDimensions',
-					active: true
 				},
 				{
 					name: 'convertOneStopGradients',
