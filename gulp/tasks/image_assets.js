@@ -21,7 +21,7 @@ const startup = async () => {
 gulp.task('image_assets',async function() {
   await startup();
   
-  gulp.src('./src/**/*.png', { encoding: false, removeBOM: false })
+  gulp.src('./src/components/leaflet/*.png', { encoding: false, removeBOM: false })
 	.pipe(imagemin([
             //png
             imageminPngquant({
@@ -52,5 +52,5 @@ gulp.task('image_assets',async function() {
                 quality: 90
             })
         ]))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build/components/leaflet'));
 });
