@@ -9,7 +9,7 @@ var Leaflet = Base.extend({
      */
     constructor: function (options) {
 
-        this.finishIcon = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker.png',
+        this.finishIcon = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_finish.png',
         this.finishShadow = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_shadow.png',
 
         this.base(options);

@@ -4,35 +4,44 @@ var Routing = ffwdme.components.Base.extend({
     this.base(options);
     this.bindAll(this, 'start', 'error', 'success', 'calculateRouteByForm', 'fetchCombination');
 
-    $('#load-combination').click(this.fetchCombination);
-    $('#calc-route-by-form').click(this.calculateRouteByForm);
-
     var self = this;
+	
+    $('#load-combination').click(function(){ self.fetchCombination(); });
+    $('#calc-route-by-form').click(function(){ self.calculateRouteByForm(); });
+	$('#custom-route-start-at-current').click(function(){ self.startAtCurrent(); });
+	$('#custom-route-dest-at-current').click(function(){ self.destAtCurrent(); });
+	$('#custom-route-find-start-addr').click(function(){ self.findStartAddr(); });
+	$('#custom-route-find-dest-addr').click(function(){ self.findDestAddr(); });
+
     $('#player-start').click(function(){ self.player.start(); });
     $('#player-pause').click(function(){ self.player.pause(); });
     $('#player-reset').click(function(){ self.player.reset(); });
-
-    $('#routing-trigger').click(function(){
+	
+	$('#routing-trigger').click(function(){
       $('#routing').toggleClass('hidden');
       $('#nav-info').addClass('hidden');
     });
 
-    ffwdme.on('routecalculation:start', this.start);
-    ffwdme.on('routecalculation:error', this.error);
-    ffwdme.on('routecalculation:success', this.success);
+    ffwdme.on('routecalculation:start', this.routeStart);
+    ffwdme.on('routecalculation:error', this.routeError);
+    ffwdme.on('routecalculation:success', this.routeSuccess);
+	
+    ffwdme.on('geocoding:error', function(data) { self.geocodingError(data); });
+    ffwdme.on('geocoding:success', function(response) { self.geocodingSuccess(response); });
   },
 
   player: null,
+  isDestAddress : false,
 
-  start: function(data) {
+  routeStart: function(data) {
     console.info('routing started');
   },
 
-  error: function(data) {
+  routeError: function(data) {
     console.error('routing FAILED');
   },
 
-  success: function(response) {
+  routeSuccess: function(response) {
     console.info('routing SUCCESSFULL!');
     console.dir(response);
     ffwdme.navigation.setRoute(response.route).start();
@@ -69,7 +78,58 @@ var Routing = ffwdme.components.Base.extend({
       start: { lat: slat, lng: slng },
       dest:  { lat: dlat, lng: dlng }
     }).fetch();
+  },
+  
+  startAtCurrent: function() {
+	if (ffwdme.geolocation.last == null)
+	  return;
+  
+    document.getElementById('custom-route-start-lat').value = ffwdme.geolocation.last.point.lat;
+    document.getElementById('custom-route-start-lng').value = ffwdme.geolocation.last.point.lng;
+	document.getElementById('custom-route-start-addr').value = "";
+  },
+
+  destAtCurrent: function() {
+	if (ffwdme.geolocation.last == null)
+	  return;
+  
+    document.getElementById('custom-route-dest-lat').value = ffwdme.geolocation.last.point.lat;
+    document.getElementById('custom-route-dest-lng').value = ffwdme.geolocation.last.point.lng;
+	document.getElementById('custom-route-dest-addr').value = "";
+  },
+  
+  geocodingError: function(data) {
+    console.error('geocoding FAILED');
+  },
+
+  geocodingSuccess: function(response) {
+    console.info('geocoding SUCCESSFULL!');
+    console.dir(response);
+	
+	if (this.isDestAddress) {
+		document.getElementById('custom-route-dest-lat').value = response.point.lat;
+		document.getElementById('custom-route-dest-lng').value = response.point.lng;
+	} else {
+		document.getElementById('custom-route-start-lat').value = response.point.lat;
+		document.getElementById('custom-route-start-lng').value = response.point.lng;
+	}
+  },
+  
+  findStartAddr: function() {
+	this.isDestAddress = false;
+	var geocode = new ffwdme.geocodingService({
+		address: document.getElementById('custom-route-start-addr').value,
+		anchorPoint: ffwdme.geolocation.last != null ? ffwdme.geolocation.last.point : null
+	}).fetch();
+  },
+  
+  findDestAddr: function() {
+	this.isDestAddress = true;
+	var geocode = new ffwdme.geocodingService({
+		address: document.getElementById('custom-route-dest-addr').value
+	}).fetch();
   }
+  
 });
 
 module.exports = Routing;

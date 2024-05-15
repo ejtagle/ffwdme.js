@@ -9,7 +9,7 @@ gulp.task('sass',async function () {
 
   gulp.src('./src/**/*.scss')
     .pipe(sourcemaps.init())
-      .pipe(sass())
+      .pipe(sass({outputStyle: 'compressed'}))
       .on('error', handleErrors)
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./build'))

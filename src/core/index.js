@@ -6,6 +6,8 @@ var Route = require('./route');
 var NavigationInfo = require('./navigation_info');
 var RoutingBase = require('./routing/base');
 var RoutingGraphHopper = require('./routing/graph_hopper');
+var GeocodingBase = require('./geocoding/base');
+var GeocodingGraphHopper = require('./geocoding/graph_hopper');
 var UtilsGeo = require('./utils/geo');
 var UtilsProxy = require('./utils/proxy');
 
@@ -27,6 +29,11 @@ var UtilsProxy = require('./utils/proxy');
       Base: RoutingBase,
       GraphHopper: RoutingGraphHopper
     },
+
+	geocoding: {
+	  Base: GeocodingBase,
+	  GraphHopper: GeocodingGraphHopper
+	},
 
     utils: {
       Geo: UtilsGeo,
@@ -50,7 +57,7 @@ var UtilsProxy = require('./utils/proxy');
 
       this.geolocation = new ffwdme.Geolocation(options.geoProvider);
       // start watching the geoposition
-      if (!options.ingoreGeolocation) {
+      if (!options.ignoreGeolocation) {
         this.geolocation.watchPosition({
           enableHighAccuracy: true,
           maximumAge: 30 * 1000,
@@ -60,6 +67,10 @@ var UtilsProxy = require('./utils/proxy');
 
       if (options.routing && ffwdme.routing[options.routing]) {
         this.routingService = ffwdme.routing[options.routing];
+      }
+
+      if (options.geocoding && ffwdme.geocoding[options.geocoding]) {
+        this.geocodingService = ffwdme.geocoding[options.geocoding];
       }
 
       this.navigation = new ffwdme.Navigation();
@@ -108,12 +119,15 @@ var UtilsProxy = require('./utils/proxy');
     navigation: null,
 
     routingService: null,
+	
+	geocodingService: null,
 
     reset: function() {
       this.callbacks = null;
       this.geolocation && this.geolocation.clearWatch();
       this.geolocation = null;
       this.routingService = null;
+	  this.geocodingService = null;
       this.navigation = null;
     },
 

@@ -12,6 +12,7 @@ function init() {
     // setup ffwdme
     ffwdme.initialize({
         routing: 'GraphHopper',
+		geocoding: 'GraphHopper',
         graphHopper: {
             apiKey: CREDENTIALS.graphHopper
         }
@@ -69,7 +70,7 @@ function init() {
         distance: new ffwdme.components.DistanceToNextTurn({parent: '#playground', grid: {x: 5, y: 1, w: 4}}),
 
 
-        // speed     : new ffwdme.components.Speed({ parent: '#playground', grid: { x: 1, y: 12 } }),
+        //speed     : new ffwdme.components.Speed({ parent: '#playground', grid: { x: 1, y: 12 } }),
         destTime: new ffwdme.components.TimeToDestination({parent: '#playground', grid: {x: 4, y: 12}}),
         destDist: new ffwdme.components.DistanceToDestination({parent: '#playground', grid: {x: 7, y: 12}}),
         arrival: new ffwdme.components.ArrivalTime({parent: '#playground', grid: {x: 10, y: 12}, defaultUnit: ''}),

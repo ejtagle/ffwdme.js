@@ -19,6 +19,48 @@
 
   fieldset {
     border: 1px dashed lighten($border_dark, 70);
+	display: block;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding-top: 0.35em;
+	padding-bottom: 0.625em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+  }
+
+  fieldset > legend > h3 {
+    margin-top: 0;
+	margin-bottom: 0;
+  }
+
+  fieldset > p {
+    margin-top: 0;
+	margin-bottom: 0;
+  }
+
+  fieldset > div {
+    height: 22px;
+    display: flex;
+    align-items: center
+  }
+
+  fieldset > div > label {
+	display: block;
+	width: 60px;
+	float: left;
+  }
+
+  fieldset > div > label:after { 
+	content: ": " 
+  }
+  
+  fieldset > fieldset {
+	border-left-width:0;
+	border-right-width:0;
+	border-bottom-width:0;
+	padding-left:0;
+    padding-right:0;
+	padding-bottom: 0.1em;
   }
 
   button {
@@ -27,12 +69,22 @@
     background: rgba(64,64,64, 0.9);
     color: #fff;
     font-family: $font_stack;
-    min-width: 100px;
+    min-width: 95px;
     line-height: 20px;
     font-size: 14px;
     text-align: center;
-    margin: 100px 0 5px 0;
+    margin: 5px 0 5px 0;
     padding: 5px 10px;
+  }
+
+  #custom-route-start-at-current,
+  #custom-route-dest-at-current,
+  #custom-route-find-start-addr,
+  #custom-route-find-dest-addr  {
+    margin: 5px 5px 5px 5px;
+	padding: 1px 1px;
+	font-size: 12px;
+	min-width: 50px;
   }
 
   #nav-info-trigger,
@@ -62,14 +114,19 @@
     top: 40px;
     right: 0;
     width: 100%;
-    max-width: 400px;
-    min-height:400px;
-    padding: 20px;
+    max-width: 320px;
+    min-height:300px;
+    padding: 8px;
     z-index: 4;
   }
 
   .hidden {
     display: none;
+  }
+  
+  #nav-info > p {
+    margin-top:5px;
+	margin-bottom:5px;
   }
 }
 

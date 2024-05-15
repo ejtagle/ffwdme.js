@@ -42,7 +42,11 @@ var PlayerLocal = Player.extend({
 
     $.getJSON(url, function(data) {
       self.track = new Track();
-      self.track.points = data.track.points;
+	  if (data != null && data.track != null && data.track.points != null)
+		self.track.points = data.track.points;
+	  else {
+		self.track.points = [];
+	  }
     });
   }
 });

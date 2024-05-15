@@ -36,8 +36,13 @@ html, body {
   top: 0;
   left: 0;
   z-index: 3;
+  pointer-events: none;
 }
 
 #playground.hidden {
   display: none;
+}
+
+#playground > div {
+  pointer-events: auto;
 }
