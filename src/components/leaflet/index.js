@@ -9,6 +9,8 @@ var Leaflet = Base.extend({
      */
     constructor: function (options) {
 
+		this.startIcon = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_start.png',
+		this.startShadow = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_shadow.png',
         this.finishIcon = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_finish.png',
         this.finishShadow = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_shadow.png',
 
@@ -29,7 +31,11 @@ var Leaflet = Base.extend({
 
     classname: "Leaflet",
 
-    attrAccessible: ['el', 'apiKey', 'minZoom', 'maxZoom', 'finishIcon', 'finishShadow'],
+    attrAccessible: ['el', 'apiKey', 'minZoom', 'maxZoom', 'startIcon', 'startShadow', 'finishIcon', 'finishShadow'],
+
+	startIcon: null,
+
+	startShadow: null,
 
     finishIcon: null,
 
@@ -166,6 +172,20 @@ var Leaflet = Base.extend({
     onRouteSuccess: function (e) {
         this.inRoutingMode = true;
 
+        var start = e.route.start();
+
+        var startMarkerIcon = new L.Icon({
+            iconUrl: this.startIcon,
+            shadowUrl: this.startShadow,
+            iconSize: new L.Point(40, 40),
+            shadowSize: new L.Point(40, 40),
+            iconAnchor: new L.Point(20, 35),
+            popupAnchor: new L.Point(-3, -76)
+        });
+
+        this.startMarker = new L.Marker(start, {icon: startMarkerIcon});
+        this.map.addLayer(this.startMarker);
+		
         var destination = e.route.destination();
 
         var finishMarkerIcon = new L.Icon({
@@ -173,7 +193,7 @@ var Leaflet = Base.extend({
             shadowUrl: this.finishShadow,
             iconSize: new L.Point(40, 40),
             shadowSize: new L.Point(40, 40),
-            iconAnchor: new L.Point(20, 20),
+            iconAnchor: new L.Point(12, 32),
             popupAnchor: new L.Point(-3, -76)
         });
 
@@ -220,8 +240,8 @@ var Leaflet = Base.extend({
         if (!this.polylines) {
             this.polylines = {};
 
-            this.polylines.underlay = new L.Polyline(latlngs, {color: 'red', opacity: 1, weight: 8});
-            this.polylines.overlay = new L.Polyline(latlngs, {color: 'white', opacity: 1, weight: 4});
+            this.polylines.underlay = new L.Polyline(latlngs, {color: 'crimson', opacity: 1, weight: 8});
+            this.polylines.overlay = new L.Polyline(latlngs, {color: 'cornsilk', opacity: 1, weight: 4});
 
             this.map.addLayer(this.polylines.underlay);
             this.map.addLayer(this.polylines.overlay);
@@ -299,7 +319,7 @@ var Leaflet = Base.extend({
         ];
 
         if (!this.helpLine) {
-            this.helpLine = new L.Polyline(latlngs, {color: 'red', opacity: 0.5, weight: 2});
+            this.helpLine = new L.Polyline(latlngs, {color: 'darkmagenta', opacity: 0.5, weight: 2});
             this.map.addLayer(this.helpLine);
         } else {
             this.helpLine.setLatLngs(latlngs);
