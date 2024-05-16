@@ -1,0 +1,9 @@
+.ffwdme-components-daynight {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.night-mode-filter {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}

@@ -32,7 +32,7 @@ var AudioInstructions = Base.extend({
 
   iconSoundOn: 'audio_instructions/sound-on.svg',
 
-  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-clickable',
+  classes: 'ffwdme-components-container ffwdme-clickable',
 
   logoEl: null,
 

@@ -8,7 +8,7 @@ var Speed = BaseIcon.extend({
 
   classname: "Speed",
 
-  classes:'ffwdme-info',
+  classes:'ffwdme-components-container ffwdme-info',
 
   format: function(metersPerSecond) {
     return Math.round(metersPerSecond*3.6);

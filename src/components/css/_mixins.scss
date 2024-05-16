@@ -2,6 +2,9 @@
   border-color: $color;
   background: $color;
   background-size: 50px 50px, auto;
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  backdrop-filter: saturate(180%) blur(8px);
+  box-shadow: 0px 10px 15px 10px rgba(0 ,0 ,0 ,0.15);
 }
 
 @mixin widget-font-style{
@@ -14,10 +17,10 @@
 }
 
 @mixin widget-border-style{
-  //border-style: solid;
+  border-style: solid;
   box-shadow:         $widget-border-shadow;
-  //box-sizing: border-box;
-  //border-radius: $widget-border-radius;
-  //border-width: $widget-border-width;
-  border: none;
+  box-sizing: border-box;
+  border-radius: $widget-border-radius;
+  border-width: $widget-border-width;
+  //border: none;
 }

@@ -5,7 +5,7 @@ var DistanceToNextTurn = BaseWide.extend({
 
   classname: "DistanceToNextTurn",
 
-  classes: 'ffwdme-components-container ffwdme-grid-w9 ffwdme-grid-h1 ffwdme-components-text-only ffwdme-info',
+  classes: 'ffwdme-components-container ffwdme-components-text-only ffwdme-info',
 
   format: DistanceToDestination.prototype.format,
 

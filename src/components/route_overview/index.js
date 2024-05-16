@@ -19,7 +19,7 @@ var RouteOverview = Base.extend({
 
   iconRouteOverview: 'route_overview/map.svg',
 
-  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-components-route-overview ffwdme-clickable',
+  classes: 'ffwdme-components-container ffwdme-components-route-overview ffwdme-clickable',
 
   toggleOverview: function(e){
     if (!this.map || !this.map.canControlMap(this)) return;

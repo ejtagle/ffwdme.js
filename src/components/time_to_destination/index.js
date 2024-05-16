@@ -6,7 +6,7 @@ var TimeToDestination = BaseIcon.extend({
 
     classname: "TimeToDestination",
 
-    classes: 'ffwdme-grid-w3 ffwdme-grid-h1 ffwdme-info',
+    classes: 'ffwdme-components-container ffwdme-info',
 
     defaultUnit: 'h',
 

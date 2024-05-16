@@ -1,11 +1,11 @@
 /*widget background*/
-$widget-default-background: rgb(36,38,40);
-$widget-blue-background: rgb(42,143,189);
-$widget-orange-background: rgb(255,85,0);
-$widget-green-background: rgb(68,170,85);
-$widget-red-background: rgb(164,8,2);
-$widget-pink-background: rgb(255,0,102);
-$widget-purple-background: rgb(99,9,71);
+$widget-default-background: rgba(32, 64, 64,0.6);
+$widget-blue-background: rgba(42,143,189,0.6);
+$widget-orange-background: rgba(255,85,0,0.6);
+$widget-green-background: rgba(68,170,85,0.6);
+$widget-red-background: rgba(164,8,2,0.6);
+$widget-pink-background: rgba(255,0,102,0.6);
+$widget-purple-background: rgba(99,9,71,0.6);
 
 /*widget borders*/
 $widget-border-shadow: inset 0 1px 1px rgba(255,255,255,0.2);

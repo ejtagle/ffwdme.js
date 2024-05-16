@@ -31,7 +31,7 @@ var Arrow = Base.extend({
         this.render();
     },
 
-    classes: 'ffwdme-components-container ffwdme-grid-w3 ffwdme-grid-h2 ffwdme-info',
+    classes: 'ffwdme-components-container ffwdme-info',
 
     turnTypeIconPaths: null,
 

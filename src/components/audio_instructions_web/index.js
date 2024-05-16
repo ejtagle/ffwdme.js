@@ -28,7 +28,7 @@ var AudioInstructionsWeb = Base.extend({
 
   iconSoundOn: 'audio_instructions_web/sound-on.svg',
 
-  classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-clickable',
+  classes: 'ffwdme-components-container ffwdme-clickable',
 
   logoEl: null,
 

@@ -33,7 +33,7 @@ var NavStart = Base.extend({
 
     iconNavStart: 'nav_start/start.svg',
 
-    classes: 'ffwdme-components-container ffwdme-grid-w2 ffwdme-grid-h1 ffwdme-components-nav-start ffwdme-clickable',
+    classes: 'ffwdme-components-container ffwdme-components-nav-start ffwdme-clickable',
 
     toggleNavStart: function (e) {
 

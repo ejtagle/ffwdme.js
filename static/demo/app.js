@@ -1,5 +1,37 @@
 function init() {
 
+	/*! Normalized address bar hiding for iOS & Android (c) @scottjehl MIT License */
+	var win = window;
+	var doc = win.document;
+	
+	// If there's a hash, or addEventListener is undefined, stop here
+	if(!win.navigator.standalone && !location.hash){
+		
+		//scroll to 1
+		win.scrollTo( 0, 1 );
+		var scrollTop = 1,
+			getScrollTop = function(){
+				return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+			},
+		
+			//reset to 0 on bodyready, if needed
+			bodycheck = setInterval(function(){
+				if( doc.body ){
+					clearInterval( bodycheck );
+					scrollTop = getScrollTop();
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}	
+			}, 15 );
+		
+		setTimeout(function(){
+			//at load, if user hasn't scrolled more than 20 or so...
+			if( getScrollTop() < 20 ){
+				//reset to hide addr bar at onload
+				win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+			}
+		}, 0);
+	}
+
     ffwdme.on('geoposition:init', function () {
         console.info("Waiting for initial geoposition...");
     });
@@ -66,28 +98,26 @@ function init() {
         autozoom: new ffwdme.components.AutoZoom({map: map}),
         reroute: new ffwdme.components.AutoReroute({parent: '#playground'}),
 
-        nextTurn: new ffwdme.components.NextStreet({parent: '#playground', grid: {x: 4, y: 11}}),
-        distance: new ffwdme.components.DistanceToNextTurn({parent: '#playground', grid: {x: 5, y: 1, w: 4}}),
+        zoom: new ffwdme.components.Zoom({map: map, parent: '#playground', grid: {x: 0, y: 0, w: 4, h: 3}}), //--
+        distance: new ffwdme.components.DistanceToNextTurn({parent: '#playground', grid: {x: 5, y: 0, w: 11, h: 3}}), //--
+        overview: new ffwdme.components.RouteOverview({map: map, parent: '#playground', grid: {x: 16, y: 0, w: 3, h: 3}}), //--
+        audio: new ffwdme.components.AudioInstructionsWeb({parent: '#playground', grid: {x: 19, y: 0, w: 3, h: 3},audioData: audioData }), //--
+        daynight: new ffwdme.components.DayNight({parent: '#playground', grid: {x: 22, y: 0, w: 3, h: 3}}), //--
 
+		arrow: new ffwdme.components.Arrow({parent: '#playground', grid: {x: 0, y: 22, w: 6, h: 3}}),
+        nextTurn: new ffwdme.components.NextStreet({parent: '#playground', grid: {x: 7, y: 22, w: 18, h: 1}}),
 
-        //speed     : new ffwdme.components.Speed({ parent: '#playground', grid: { x: 1, y: 12 } }),
-        destTime: new ffwdme.components.TimeToDestination({parent: '#playground', grid: {x: 4, y: 12}}),
-        destDist: new ffwdme.components.DistanceToDestination({parent: '#playground', grid: {x: 7, y: 12}}),
-        arrival: new ffwdme.components.ArrivalTime({parent: '#playground', grid: {x: 10, y: 12}, defaultUnit: ''}),
-        arrow: new ffwdme.components.Arrow({parent: '#playground', grid: {x: 0, y: 11}}),
-        audio: new ffwdme.components.AudioInstructionsWeb({
-            parent: '#playground',
-            grid: {x: 11, y: 1, w: 2},
-            audioData: audioData
-        }),
+        //speed     : new ffwdme.components.Speed({ parent: '#playground', grid: { x: 2, y: 24, w:2, h: 2 } }),
+        destTime: new ffwdme.components.TimeToDestination({parent: '#playground', grid: {x: 7, y: 23, w:6, h: 2}}),
+        destDist: new ffwdme.components.DistanceToDestination({parent: '#playground', grid: {x: 13, y: 23, w: 6, h: 2}}),
+        arrival: new ffwdme.components.ArrivalTime({parent: '#playground', grid: {x: 19, y: 23, w:6, h: 2}, defaultUnit: ''}),
+        
 
         // experimental components
         mapRotator: new ffwdme.components.MapRotator({map: map}),
-        zoom: new ffwdme.components.Zoom({map: map, parent: '#playground', grid: {x: 0, y: 1, w: 4}}),
-        overview: new ffwdme.components.RouteOverview({map: map, parent: '#playground', grid: {x: 9, y: 0}}),
 
         // debugging
-        //geoloc  : new ffwdme.debug.components.Geolocation({ parent: '#playground', grid: { x: 5, y: 1 }}),
+        //geoloc  : new ffwdme.debug.components.Geolocation({ parent: '#playground', grid: { x: 10, y: 2, w:2, h: 2 }}),
         navInfo: new ffwdme.debug.components.NavInfo(),
         routing: new ffwdme.debug.components.Routing()
     };

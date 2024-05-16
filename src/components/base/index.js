@@ -60,16 +60,28 @@ var Base = ffwdme.Class.extend({
     if (!grid) return;
     var el = $(this.el);
 
-    grid.x && el.addClass('ffwdme-grid-x' + grid.x);
-    grid.y && el.addClass('ffwdme-grid-y' + grid.y);
-    if (grid.w) {
-        // remove any width classes
-        el.attr('class',
-            function(i, c){
-                return c.replace(/(^|\s)ffwdme-grid-w\S+/g, '');
-            });
-        grid.w && el.addClass('ffwdme-grid-w' + grid.w);
-    }
+	// Set position
+    el.addClass('ffwdme-grid-x' + grid.x);
+    el.addClass('ffwdme-grid-y' + grid.y);
+	
+	// remove any width classes
+	var w = grid.w;
+	if (!w) w = 1;
+	el.attr('class',
+		function(i, c){
+			return c.replace(/(^|\s)ffwdme-grid-w\S+/g, '');
+		});
+	el.addClass('ffwdme-grid-w' + w);
+
+	var h = grid.h;
+	if (!h) h = 1;
+
+	// remove any height classes
+	el.attr('class',
+		function(i, c){
+			return c.replace(/(^|\s)ffwdme-grid-h\S+/g, '');
+		});
+	el.addClass('ffwdme-grid-h' + h);
   },
 
   createTestElement: function() {

@@ -19,7 +19,7 @@ var Zoom = Base.extend({
 
   iconZoomOut: 'zoom/minus.svg',
 
-  classes: 'ffwdme-components-container ffwdme-components-zoom-container ffwdme-grid-w3 ffwdme-grid-h1 ffwdme-clickable',
+  classes: 'ffwdme-components-container ffwdme-components-zoom-container ffwdme-clickable',
 
   imgUrl: function(icon){
     return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + icon);

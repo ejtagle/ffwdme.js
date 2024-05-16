@@ -103,7 +103,7 @@ var Leaflet = Base.extend({
 
         L.tileLayer(this.options.tileURL, {
             minZoom: this.minZoom,
-            maxZoom: this.maxZoom,
+            maxZoom: this.maxZoom
         }).addTo(this.map);
 
         if (!this.options.disableLeafletLocate) {

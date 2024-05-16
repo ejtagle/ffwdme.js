@@ -6,7 +6,7 @@ var NextStreet = BaseWide.extend({
 
     announceDist: 150,
 
-    classes: 'ffwdme-components-container ffwdme-components-text-only ffwdme-grid-w9 ffwdme-grid-h1 ffwdme-info',
+    classes: 'ffwdme-components-container ffwdme-components-text-only ffwdme-info',
 
   showNextStreet: function(e) {
     $(this.el).find('.ffwdme-components-text')

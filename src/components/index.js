@@ -17,6 +17,7 @@ var Speed = require('./speed');
 var Zoom = require('./zoom');
 var TimeToDestination = require('./time_to_destination');
 var NavStart = require('./nav_start');
+var DayNight = require('./daynight');
 
 (function(ffwdme){
   ffwdme.components = {
@@ -38,6 +39,7 @@ var NavStart = require('./nav_start');
     Speed: Speed,
     TimeToDestination: TimeToDestination,
     Zoom: Zoom,
-    NavStart: NavStart
+    NavStart: NavStart,
+	DayNight: DayNight,
   };
 })(ffwdme);

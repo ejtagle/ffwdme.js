@@ -21,7 +21,7 @@ var BaseIcon = Base.extend({
 
   defaultUnit: null,
 
-  classes: 'ffwdme-grid-w3 ffwdme-grid-h1 ffwdme-components-icon',
+  classes: 'ffwdme-components-icon',
 
   accessor: function(selector, val) {
     var el = this.$(selector);
