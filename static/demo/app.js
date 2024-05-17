@@ -5,9 +5,11 @@ function init() {
 		var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen ;
 		var efs = document.exitFullscreen || document.webkitExitFullscreen || document.mozExitFullscreen ;
 		if (this.type.startsWith('landscape')) {
-			rfs.call(el);
+			if (!document.fullscreenElement)
+				rfs.call(el);
 		} else {
-			efs.call(document);
+			if (document.fullscreenElement)
+				efs.call(document);
 		}
 	};
 
