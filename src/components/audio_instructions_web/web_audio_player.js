@@ -15,6 +15,7 @@ var WebAudioPlayer = function (options) {
     this.options = options || {};
 
     this.audioData = options.audioData;
+	this.audioLanguage = options.audioLanguage.slice(0,2).toLowerCase();
 
     //check if browser can play audio file
     this.canPlayAudio = ('speechSynthesis' in window);
@@ -48,11 +49,41 @@ WebAudioPlayer.prototype.play = function (directionCode, nextDirection) {
         direction = direction.replace('{{street}}', nextDirection.street);
     }
 
-    var msg = new SpeechSynthesisUtterance(direction);
-    window.speechSynthesis.speak(msg);
+	var synthesis = window.speechSynthesis;
+
+	const allVoicesObtained = new Promise(function(resolve, reject) {
+		let voices = synthesis.getVoices();
+		if (voices.length !== 0) {
+			resolve(voices);
+		} else {
+			const onVoicesChanged = function() {
+				synthesis.removeEventListener("voiceschanged", onVoicesChanged);
+				voices = synthesis.getVoices();
+				resolve(voices);
+			};
+			synthesis.addEventListener("voiceschanged", onVoicesChanged);
+		}
+	});
+
+	var self = this;
+	allVoicesObtained.then(function(voices) { 
+	
+		// Get the first `en` language voice in the list
+		var voice = voices.filter((voice) => voice.lang.slice(0,2).toLowerCase() == self.audioLanguage )[0];
+
+		// Create an utterance
+		var msg = new SpeechSynthesisUtterance(direction);
+		
+		// Set utterance properties
+		msg.voice = voice;
+		msg.pitch = 1.5;
+		msg.rate = 1.25;
+		msg.volume = 0.8;
+		
+		synthesis.speak(msg);
+	});
 
     return true;
-
 };
 
 WebAudioPlayer.prototype.toggleEnabled = function () {

@@ -8,7 +8,7 @@ var AudioInstructionsWeb = Base.extend({
     this.bindAll(this, 'navigationOnRoute', 'onGeopositionUpdate', 'toggleSound');
 
      //init audio player
-    this.player = new WebAudioPlayer({audioData: options.audioData});
+    this.player = new WebAudioPlayer({audioData: options.audioData, audioLanguage: options.audioLanguage});
 
     ffwdme.on('navigation:onroute', this.navigationOnRoute);
     ffwdme.on('geoposition:update', this.onGeopositionUpdate);
