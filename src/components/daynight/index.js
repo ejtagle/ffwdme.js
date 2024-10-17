@@ -18,10 +18,6 @@ var DayNight = Base.extend({
 
   logoEl: null,
 
-  imgUrl: function(){
-    return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + this.icon);
-  },
-
   iconEl: null,
 
   setIcon: function() {
@@ -30,7 +26,7 @@ var DayNight = Base.extend({
       this.iconEl = $(img).addClass('ffwdme-components-daynight').appendTo($(this.el));
     }
 
-    this.iconEl[0].src = this.imgUrl();
+    this.iconEl[0].src = this.getImageUrl(this.icon);
   },
 
   toggleDayNight: function(e){

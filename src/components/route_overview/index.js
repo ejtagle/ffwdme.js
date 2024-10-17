@@ -33,11 +33,6 @@ var RouteOverview = Base.extend({
     }, 200);
   },
 
-
-  imgUrl: function(){
-    return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + this.icon);
-  },
-
   setOpacity: function(){
     var widgets = $(".ffwdme-components-container");
     if (this.map.inRouteOverview){
@@ -52,7 +47,7 @@ var RouteOverview = Base.extend({
       var img = document.createElement('img');
       this.iconEl = $(img).addClass('ffwdme-components-route-overview-image').appendTo($(this.el));
     }
-    this.iconEl[0].src = this.imgUrl();
+    this.iconEl[0].src = this.getImageUrl(this.icon);
   },
 
   make: function(){

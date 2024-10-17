@@ -21,10 +21,6 @@ var Zoom = Base.extend({
 
   classes: 'ffwdme-components-container ffwdme-components-zoom-container ffwdme-clickable',
 
-  imgUrl: function(icon){
-    return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + icon);
-  },
-
   zoom: function(val){
     this.map && this.map.changeUserZoom(val);
     ffwdme.geolocation.last && ffwdme.trigger('geoposition:update', ffwdme.geolocation.last);
@@ -37,13 +33,13 @@ var Zoom = Base.extend({
       img = document.createElement('img');
       this.iconElZoomOut = $(img).addClass('ffwdme-components-zoom').appendTo($(this.el));
     }
-    this.iconElZoomOut[0].src = this.imgUrl(this.iconZoomOut);
+    this.iconElZoomOut[0].src = this.getImageUrl(this.iconZoomOut);
 
       if (!this.iconElZoomIn) {
           img = document.createElement('img');
           this.iconElZoomIn = $(img).addClass('ffwdme-components-zoom').appendTo($(this.el));
       }
-      this.iconElZoomIn[0].src = this.imgUrl(this.iconZoomIn);
+      this.iconElZoomIn[0].src = this.getImageUrl(this.iconZoomIn);
 
   },
 

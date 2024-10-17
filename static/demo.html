@@ -26,14 +26,72 @@
 
     </head>
     <body onload="init()" style="">
+	  <!-- cache all images, to inline them -->
+	  <div id="imgcache" style="display:none;">
+		<div name="arrow">
+			<img name="straight.svg" src="components/arrow/straight.svg">
+			<img name="left.svg" src="components/arrow/left.svg">
+			<img name="half-left.svg" src="components/arrow/half-left.svg">
+			<img name="hard-left.svg" src="components/arrow/hard-left.svg">
+			<img name="right.svg" src="components/arrow/right.svg">
+			<img name="half-right.svg" src="components/arrow/half-right.svg">
+			<img name="hard-right.svg" src="components/arrow/hard-right.svg">
+			<img name="roundabout.svg" src="components/arrow/roundabout.svg">
+			<img name="u-turn.svg" src="components/arrow/u-turn.svg">
+			<img name="flag.svg" src="components/arrow/flag.svg">
+		</div>
+		<div name="audio_instructions_web">
+			<img name="sound-off.svg" src="components/audio_instructions_web/sound-off.svg">
+			<img name="sound-on.svg" src="components/audio_instructions_web/sound-on.svg">\
+		</div>
+		<div name="daynight">
+			<img name="daynight.svg" src="components/daynight/daynight.svg">
+		</div>
+		<div name="nav_start">
+			<img name="stop.svg" src="components/nav_start/stop.svg">
+			<img name="start.svg" src="components/nav_start/start.svg">
+		</div>
+		<div name="route_overview">
+			<img name="position.svg" src="components/route_overview/position.svg">
+			<img name="map.svg" src="components/route_overview/map.svg">
+		</div>
+		<div name="zoom">
+			<img name="plus.svg" src="components/zoom/plus.svg">
+			<img name="minus.svg" src="components/zoom/minus.svg">
+		</div>
+		<div name="audio_instructions">
+			<img name="sound-off.svg" src="components/audio_instructions/sound-off.svg">
+			<img name="sound-on.svg" src="components/audio_instructions/sound-on.svg">\\
+		</div>
+		<div name="distance_to_destination">
+			<img name="road.svg" src="components/distance_to_destination/road.svg">
+		</div>
+		<div name="speed">
+			<img name="car.svg" src="components/speed/car.svg">
+		</div>
+		<div name="time_to_destination">
+			<img name="flag.svg" src="components/time_to_destination/flag.svg">
+		</div>
+		<div name="arrival_time">
+			<img name="clock.svg" src="components/arrival_time/clock.svg">
+		</div>
+		<div name="leaflet">
+			<img name="map_marker_start.png" src="components/leaflet/map_marker_start.png">
+			<img name="map_marker_shadow.png" src="components/leaflet/map_marker_shadow.png">
+			<img name="map_marker_finish.png" src="components/leaflet/map_marker_finish.png">
+			<img name="map_marker.png" src="components/leaflet/map_marker.png">
+		</div>
+ 	  </div>
+	  
       <div id="loader">Wait for geolocation...</div>
       <div id="map"></div>
 
       <div class="ffwdme-debug-wrapper">
-        <button id="views-toggle" class="hidden">Toggle Components</button>
-        <button id="nav-info-trigger" class="hidden">Nav Info</button>
-        <button id="routing-trigger" class="hidden">Routing</button>
-
+		<div class="btn-group">
+			<button id="nav-info-trigger">Nav Info</button>
+			<button id="routing-trigger">Routing</button>
+		</div>
+		
         <div id="nav-info" class="hidden">
           <p>
             <span>Next street:</span><br/>
@@ -76,37 +134,7 @@
 
         <div id="routing" class="hidden">
           <fieldset>
-            <legend><h3>Load GeoProvider/Route Combination</h3></legend>
-            <fieldset>
-              <select id="select-combination">
-                <option value="dieburg_philipp_reis_altheimer;49.89752;8.85370;49.90455;8.85799">Dieburg P. Reis Str -> Altheimer Str.</option>
-                <option value="dieburg_parkstr_philipp_reis;49.89479;8.83578;49.89832;8.85185">Dieburg Parkstr. -> P. Reis Str</option>
-                <option value="dieburg_kaufland_hergershausen;49.88848;8.844907;49.93565;8.91363">Dieburg Kaufland -> Hergershausen</option>
-                <option value="dieburg_kreisel_wrong_turn;49.88828;8.842847;49.9020529;8.86059">Dieburg Kaufland -> Campus</option>
-                <option value="dieburg_campus_kreisel;49.88828;8.842847;49.9020529;8.86059">Dieburg Kaufland -> Campus Alternative</option>
-              </select>
-            </fieldset>
-            <button id="load-combination">
-              Load
-            </button>
-          </fieldset>
-          <fieldset>
-            <legend><h3>Geoprovider</h3></legend>
-            <p>
-              Loaded track: <span id="geoprovider-track">none</span>
-            </p>
-            <button id="player-start">
-              Play
-            </button>
-            <button id="player-pause">
-              Pause
-            </button>
-            <button id="player-reset">
-              Reset
-            </button>
-          </fieldset>
-          <fieldset>
-            <legend><h3>Custom Route</h3></legend>
+            <legend><h3>Route</h3></legend>
             <fieldset>
               <legend>Start</legend>
 			  <div>

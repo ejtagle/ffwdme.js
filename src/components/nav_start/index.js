@@ -77,10 +77,6 @@ var NavStart = Base.extend({
 
     },
 
-    imgUrl: function () {
-        return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + this.icon);
-    },
-
     setOpacity: function () {
         var widgets = $(".ffwdme-components-container");
         if (this.navStarted) {
@@ -101,7 +97,7 @@ var NavStart = Base.extend({
             var img = document.createElement('img');
             this.iconEl = $(img).addClass('ffwdme-components-nav-start-image').appendTo($(this.el));
         }
-        this.iconEl[0].src = this.imgUrl();
+        this.iconEl[0].src = this.getImageUrl(this.icon);
     },
 
     make: function () {

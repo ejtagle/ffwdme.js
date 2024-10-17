@@ -2,21 +2,16 @@ var Routing = ffwdme.components.Base.extend({
 
   constructor: function(options) {
     this.base(options);
-    this.bindAll(this, 'start', 'error', 'success', 'calculateRouteByForm', 'fetchCombination');
+    this.bindAll(this, 'start', 'error', 'success', 'calculateRouteByForm');
 
     var self = this;
 	
-    $('#load-combination').click(function(){ self.fetchCombination(); });
     $('#calc-route-by-form').click(function(){ self.calculateRouteByForm(); });
 	$('#custom-route-start-at-current').click(function(){ self.startAtCurrent(); });
 	$('#custom-route-dest-at-current').click(function(){ self.destAtCurrent(); });
 	$('#custom-route-find-start-addr').click(function(){ self.findStartAddr(); });
 	$('#custom-route-find-dest-addr').click(function(){ self.findDestAddr(); });
 
-    $('#player-start').click(function(){ self.player.start(); });
-    $('#player-pause').click(function(){ self.player.pause(); });
-    $('#player-reset').click(function(){ self.player.reset(); });
-	
 	$('#routing-trigger').click(function(){
       $('#routing').toggleClass('hidden');
       $('#nav-info').addClass('hidden');
@@ -30,7 +25,6 @@ var Routing = ffwdme.components.Base.extend({
     ffwdme.on('geocoding:success', function(response) { self.geocodingSuccess(response); });
   },
 
-  player: null,
   isDestAddress : false,
 
   routeStart: function(data) {
@@ -45,27 +39,6 @@ var Routing = ffwdme.components.Base.extend({
     console.info('routing SUCCESSFULL!');
     console.dir(response);
     ffwdme.navigation.setRoute(response.route).start();
-  },
-
-  fetchCombination: function() {
-    var values = $('#select-combination').val().split(';');
-    var trackId = values[0];
-
-    $('#custom-route-start-lat').val(values[1]);
-    $('#custom-route-start-lng').val(values[2]);
-    $('#custom-route-dest-lat').val(values[3]);
-    $('#custom-route-dest-lng').val(values[4]);
-
-    try {
-      this.player = new ffwdme.debug.geoprovider.PlayerLocal({
-        // dieburg industriegebiet
-        //id: '2011-03-18-16-48-12'
-        id: trackId
-      });
-      $('#geoprovider-track').text(trackId);
-    } catch(e) {
-      $('#geoprovider-track').text('Could not fetch the recorded track!: ' + trackId);
-    }
   },
 
   calculateRouteByForm: function() {

@@ -1,19 +1,30 @@
-.ffwdme-components-container {
+.ffwdme-components-wrapper {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
 
+  overflow: hidden;
+
   z-index: 100;
   position: absolute;
 
-  overflow: hidden;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+  grid-template-rows: repeat(24, minmax(0, 1fr));
   align-items: center;
   justify-content: center;
+}
 
+.ffwdme-components-container {
+
+  display: block;
+  width: 100%;
+  height: 100%;
+  
   transition: all .2s;
+  
   text-shadow: none;
 
   @include widget-font-style;

@@ -24,8 +24,8 @@
 	margin-right: 2px;
 	padding-top: 0.35em;
 	padding-bottom: 0.625em;
-	padding-left: 0.75em;
-	padding-right: 0.75em;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
   }
 
   fieldset > legend > h3 {
@@ -87,21 +87,25 @@
 	min-width: 50px;
   }
 
-  #nav-info-trigger,
-  #routing-trigger,
-  #views-toggle {
+  .btn-group {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 30vh;
     z-index: 5;
+  
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   }
 
-  #nav-info-trigger {
-    right: 100px;
-  }
-
-  #views-toggle {
-    right: 200px;
+  #nav-info-trigger,
+  #routing-trigger {
+    background: rgba(64,64,128, 0.7);
+	inline-size: 80px;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	min-width: 24px;
+	padding: 0;
   }
 
   #nav-info, #routing {
@@ -111,10 +115,10 @@
     border: 5px solid $border_dark;
 
     position: absolute;
-    top: 40px;
-    right: 0;
+    top: 48px;
+    right: 25px;
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
     min-height:300px;
     padding: 8px;
     z-index: 4;

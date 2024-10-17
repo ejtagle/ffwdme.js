@@ -110,12 +110,30 @@ var Base = ffwdme.Class.extend({
     return this;
   },
 
-  getRetinaImageUrl: function(imgPath){
+  getImageUrl: function(imgPath){
+	if (imgPath == '')
+		return '';
+	var root = document.getElementById("imgcache");
+	if (root != null) {
+		var parts = imgPath.split('/');
+		var len = parts.length;
+		for (var i=0; i < len-1; ++i) {
+			root = root.querySelector('div[name="'+parts[i]+'"]');
+			if (root == null)
+				break;
+		}
+		if (root != null) {
+			root = root.querySelector('img[name="'+parts[len-1]+'"]');
+			if (root != null)
+				return root.src;
+		}
+	}
+	  
     if (!!document.createElementNS &&
       !!document.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect){
-      return imgPath;
+      return ffwdme.defaults.imageBaseUrl + imgPath;
     } else {
-      return imgPath.replace("svg", "png");
+      return ffwdme.defaults.imageBaseUrl + imgPath.replace("svg", "png");
     }
   }
 }, {
@@ -139,6 +157,7 @@ var Base = ffwdme.Class.extend({
 
     return orientation;
   }
+
 });
 
 module.exports = Base;

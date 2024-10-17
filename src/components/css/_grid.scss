@@ -1,28 +1,20 @@
 $grid_size: 24;
-$single_col_size: calc(100.0 / $grid_size);
 
-@for $i from 1 through $grid_size {
-  $percent: $single_col_size * $i;
-  $no_offset: $percent - $single_col_size;
+@for $i from 0 through $grid_size {
 
   .ffwdme-grid-x#{$i}{
-    position: absolute;
-    left: calc(ceil($no_offset * 100) / 100 * 1%);
+    grid-column-start: calc($i + 1);
   }
 
   .ffwdme-grid-y#{$i}{
-    position: absolute;
-    top: calc(ceil($no_offset * 100) / 100 * 1%);
+    grid-row-start: calc($i + 1);
   }
 
   .ffwdme-grid-w#{$i}{
-    position: absolute;
-    width: calc(ceil($percent * 100) / 100 * 1%);
+    grid-column-end: span $i;
   }
 
   .ffwdme-grid-h#{$i}{
-    position: absolute;
-    height: calc(ceil($percent * 100) / 100 * 1%);
+    grid-row-end: span $i;
   }
-
 }

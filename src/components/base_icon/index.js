@@ -13,10 +13,6 @@ var BaseIcon = Base.extend({
     this.render();
   },
 
-  iconSrc: function() {
-    return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + this.icon);
-  },
-
   icon: null,
 
   defaultUnit: null,
@@ -42,7 +38,7 @@ var BaseIcon = Base.extend({
     this.base();
 
     var content = [
-      '<span class="ffwdme-components-icon-container"><img class="ffwdme-components-icon-img" src="', this.iconSrc(), '" /></span>',
+      '<span class="ffwdme-components-icon-container"><img class="ffwdme-components-icon-img" src="', this.getImageUrl(this.icon), '" /></span>',
       '<span class="ffwdme-components-label">-</span>',
       '<span class="ffwdme-components-label-unit"> ', this.defaultUnit, '</span>'
     ].join('');

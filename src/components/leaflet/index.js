@@ -9,10 +9,10 @@ var Leaflet = Base.extend({
      */
     constructor: function (options) {
 
-		this.startIcon = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_start.png',
-		this.startShadow = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_shadow.png',
-        this.finishIcon = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_finish.png',
-        this.finishShadow = ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_shadow.png',
+		this.startIcon = this.getImageUrl('leaflet/map_marker_start.png'),
+		this.startShadow = this.getImageUrl('leaflet/map_marker_shadow.png'),
+        this.finishIcon = this.getImageUrl('leaflet/map_marker_finish.png'),
+        this.finishShadow = this.getImageUrl('leaflet/map_marker_shadow.png'),
 
         this.base(options);
         this.bindAll(this, 'resize', 'drawRoute', 'drawMarkerWithoutRoute', 'onRouteSuccess', 'navigationOnRoute', 'navigationOffRoute', 'rotateMarker', 'setupMap');
@@ -139,8 +139,8 @@ var Leaflet = Base.extend({
 
         if (!this.marker) {
             markerIcon = new L.Icon({
-                iconUrl: ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker.png',
-                shadowUrl: ffwdme.defaults.imageBaseUrl + 'leaflet/map_marker_shadow.png',
+                iconUrl: this.getImageUrl('leaflet/map_marker.png'),
+                shadowUrl: this.getImageUrl('leaflet/map_marker_shadow.png'),
                 iconSize: new L.Point(40, 40),
                 shadowSize: new L.Point(40, 40),
                 iconAnchor: new L.Point(20, 20),

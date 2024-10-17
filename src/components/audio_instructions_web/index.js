@@ -124,10 +124,6 @@ var AudioInstructionsWeb = Base.extend({
   },
 
 
-  imgUrl: function(){
-    return this.getRetinaImageUrl(ffwdme.defaults.imageBaseUrl + this.icon);
-  },
-
   iconEl: null,
 
   setIcon: function() {
@@ -136,7 +132,7 @@ var AudioInstructionsWeb = Base.extend({
       this.iconEl = $(img).addClass('ffwdme-components-audio-instructions-web').appendTo($(this.el));
     }
 
-    this.iconEl[0].src = this.imgUrl();
+    this.iconEl[0].src = this.getImageUrl(this.icon);
   },
 
   toggleSound: function(e){

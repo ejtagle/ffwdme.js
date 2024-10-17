@@ -123,21 +123,21 @@ function init() {
     window.widgets = {
         map: map,
         autozoom: new ffwdme.components.AutoZoom({map: map}),
-        reroute: new ffwdme.components.AutoReroute({parent: '#playground'}),
+        reroute: new ffwdme.components.AutoReroute({parent: '#playground', grid: {x: 0, y: 4, w: 24, h: 3}}),
 
         zoom: new ffwdme.components.Zoom({map: map, parent: '#playground', grid: {x: 0, y: 0, w: 4, h: 3}}), //--
-        distance: new ffwdme.components.DistanceToNextTurn({parent: '#playground', grid: {x: 5, y: 0, w: 11, h: 3}}), //--
-        overview: new ffwdme.components.RouteOverview({map: map, parent: '#playground', grid: {x: 16, y: 0, w: 3, h: 3}}), //--
-        audio: new ffwdme.components.AudioInstructionsWeb({parent: '#playground', grid: {x: 19, y: 0, w: 3, h: 3},audioData: audioData[navigatorLanguage], audioLanguage: navigatorLanguage }), //
-        daynight: new ffwdme.components.DayNight({parent: '#playground', grid: {x: 22, y: 0, w: 3, h: 3}}), //--
+        distance: new ffwdme.components.DistanceToNextTurn({parent: '#playground', grid: {x: 4, y: 0, w: 11, h: 3}}), //--
+        overview: new ffwdme.components.RouteOverview({map: map, parent: '#playground', grid: {x: 15, y: 0, w: 3, h: 3}}), //--
+        audio: new ffwdme.components.AudioInstructionsWeb({parent: '#playground', grid: {x: 18, y: 0, w: 3, h: 3},audioData: audioData[navigatorLanguage], audioLanguage: navigatorLanguage }), //
+        daynight: new ffwdme.components.DayNight({parent: '#playground', grid: {x: 21, y: 0, w: 3, h: 3}}), //--
 
 		arrow: new ffwdme.components.Arrow({parent: '#playground', grid: {x: 0, y: 22, w: 6, h: 3}}),
-        nextTurn: new ffwdme.components.NextStreet({parent: '#playground', grid: {x: 7, y: 22, w: 18, h: 1}}),
+        nextTurn: new ffwdme.components.NextStreet({parent: '#playground', grid: {x: 6, y: 22, w: 18, h: 1}}),
 
         //speed     : new ffwdme.components.Speed({ parent: '#playground', grid: { x: 2, y: 24, w:2, h: 2 } }),
-        destTime: new ffwdme.components.TimeToDestination({parent: '#playground', grid: {x: 7, y: 23, w:6, h: 2}}),
-        destDist: new ffwdme.components.DistanceToDestination({parent: '#playground', grid: {x: 13, y: 23, w: 6, h: 2}}),
-        arrival: new ffwdme.components.ArrivalTime({parent: '#playground', grid: {x: 19, y: 23, w:6, h: 2}, defaultUnit: ''}),
+        destTime: new ffwdme.components.TimeToDestination({parent: '#playground', grid: {x: 6, y: 23, w:6, h: 2}}),
+        destDist: new ffwdme.components.DistanceToDestination({parent: '#playground', grid: {x: 12, y: 23, w: 6, h: 2}}),
+        arrival: new ffwdme.components.ArrivalTime({parent: '#playground', grid: {x: 18, y: 23, w:6, h: 2}, defaultUnit: ''}),
         
 
         // experimental components
@@ -150,9 +150,6 @@ function init() {
     };
 
     if ((/debug=/).test(window.location.href)) {
-        $('#views-toggle').click(function () {
-            $('#playground').toggleClass('hidden');
-        });
-        $('#views-toggle, #nav-info-trigger, #routing-trigger').removeClass('hidden');
+        $('#nav-info-trigger, #routing-trigger').removeClass('hidden');
     }
 }

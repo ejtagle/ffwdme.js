@@ -45,16 +45,12 @@ var Arrow = Base.extend({
 
     announceDist: 150,
 
-    imgUrl: function () {
-        return ffwdme.defaults.imageBaseUrl;
-    },
-
     make: function () {
         this.base();
 
         //create arrow ele
         var img = document.createElement('img');
-        img.src = this.getRetinaImageUrl(this.imgUrl() + this.turnTypeIconPaths.C); //straight as default
+        img.src = this.getImageUrl(this.turnTypeIconPaths.C); //straight as default
         this.arrowEl = $(img).addClass('ffwdme-components-small-arrow').appendTo($(this.el));
 
         //label for exit
@@ -148,7 +144,7 @@ var Arrow = Base.extend({
 
     updateIcon: function (turnType) {
         if (turnType != this.lastTurn) { // set img src only when turn type changes
-            this.arrowEl[0].src = this.getRetinaImageUrl(this.imgUrl() + this.turnTypeIconPaths[turnType]);
+            this.arrowEl[0].src = this.getImageUrl(this.turnTypeIconPaths[turnType]);
             this.lastTurn = turnType;
         }
     }
